@@ -5,7 +5,8 @@ FAQ9.1 Figure1 / FAQ9.2 Figure1
 |-------|---------|--------|---------|--------------|
 | ![Code](https://img.shields.io/badge/Code-Complete-green) <br> ![Dependence](https://img.shields.io/badge/Dependence-Complete-green) <br> ![Data](https://img.shields.io/badge/Data-Complete-green) | ![Running](https://img.shields.io/badge/Running-green) | ![Partial](https://img.shields.io/badge/1/1-Partial-orange) | ![Different](https://img.shields.io/badge/1/1-DIfferent-red) | ![Manual](https://img.shields.io/badge/Manual-orange) 
 
-Fig.9.22 
+
+Fig.9.22/23
 | Input | Running | Output | Quality | Post-process |
 |-------|---------|--------|---------|--------------|
 | ![Code](https://img.shields.io/badge/Code-Complete-green) <br> ![Dependence](https://img.shields.io/badge/Dependence-Complete-green) <br> ![Data](https://img.shields.io/badge/Data-Complete-green) | ![Running](https://img.shields.io/badge/Running-green) | ![Full](https://img.shields.io/badge/1/1-Full-green) | ![Similiar](https://img.shields.io/badge/1/1-Similiar-orange) | ![Auto](https://img.shields.io/badge/Auto-orange) 
@@ -20,6 +21,21 @@ Fig.9.24
 | Input | Running | Output | Quality | Post-process |
 |-------|---------|--------|---------|--------------|
 | ![Code](https://img.shields.io/badge/Code-Complete-green) <br> ![Dependence](https://img.shields.io/badge/Dependence-Complete-green) <br> ![Data](https://img.shields.io/badge/Data-Complete-green) | ![Running](https://img.shields.io/badge/Running-green) | ![Partial](https://img.shields.io/badge/2/1-Partial-orange)  | ![Same](https://img.shields.io/badge/1/1-Same-green) <br>![Similar](https://img.shields.io/badge/1/1-Similar-orange)  | ![Auto](https://img.shields.io/badge/Auto-orange) ![Manual](https://img.shields.io/badge/Manual-orange) |
+
+Fig.9.13 / 15
+| Input | Running | Output | Quality | Post-process |
+|-------|---------|--------|---------|--------------|
+| ![Code](https://img.shields.io/badge/Code-Complete-green) <br> ![Dependence](https://img.shields.io/badge/Dependence-Complete-green) <br> ![Data](https://img.shields.io/badge/Data-Complete-green) | ![Running](https://img.shields.io/badge/Running-green) | ![Partial](https://img.shields.io/badge/2/1-Partial-orange)  | ![Same](https://img.shields.io/badge/2/1-Same-green) | ![Manual](https://img.shields.io/badge/Manual-orange) |
+
+Fig.9.8
+| Input | Running | Output | Quality | Post-process |
+|-------|---------|--------|---------|--------------|
+| ![Code](https://img.shields.io/badge/Code-Complete-green) <br> ![Dependence](https://img.shields.io/badge/Dependence-Complete-green) <br> ![Data](https://img.shields.io/badge/Data-Complete-green) | ![Running](https://img.shields.io/badge/Running-green) | ![Partial](https://img.shields.io/badge/1/1-Partial-orange) <br> ![Undo](https://img.shields.io/badge/1/1-Undo-red) | ![Same](https://img.shields.io/badge/1/1-Same-green) | ![Manual](https://img.shields.io/badge/Manual-orange) |
+
+Fig.9.10
+| Input | Running | Output | Quality | Post-process |
+|-------|---------|--------|---------|--------------|
+| ![Code](https://img.shields.io/badge/Code-Complete-green) <br> ![Dependence](https://img.shields.io/badge/Dependence-Complete-green) <br> ![Data](https://img.shields.io/badge/Data-Complete-green) | ![Running](https://img.shields.io/badge/Running-green) | ![Full](https://img.shields.io/badge/2/1-Full-green) <br> ![Undo](https://img.shields.io/badge/2/1-Undo-red) | ![Same](https://img.shields.io/badge/2/1-Same-green) | ![Manual](https://img.shields.io/badge/Manual-orange) |
 
 Project to re-create the IPCC AR6 WG1 figures. See https://ipcc.ch and https://github.com/IPCC-WG1
 

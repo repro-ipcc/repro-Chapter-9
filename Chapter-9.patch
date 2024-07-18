@@ -1,0 +1,359 @@
+diff --git a/Plotting_code_and_data/Fig9_08_OHT/Plot_Figure/Plot_Right_Panel.py b/Plotting_code_and_data/Fig9_08_OHT/Plot_Figure/Plot_Right_Panel.py
+index db80dc1..cacc0ef 100644
+--- a/Plotting_code_and_data/Fig9_08_OHT/Plot_Figure/Plot_Right_Panel.py
++++ b/Plotting_code_and_data/Fig9_08_OHT/Plot_Figure/Plot_Right_Panel.py
+@@ -87,9 +87,8 @@ def plot_amoc_heat_scatter(run_dict, experiment = 'hist-1950'):
+                         
+                     for iro, resol_ocean in enumerate(resol_o):
+                         if model_ocn_res == resol_ocean:
+-                            ax = fig.add_subplot(1,1,1)
+                             if irip == 0:
+-                                label = model+'-'+resol
++                                label = model + '-' + resol
+                                 if 'EC-E' in model:
+                                     label = label + rip_control[4:6]
+                             else:
+@@ -109,52 +108,41 @@ def plot_amoc_heat_scatter(run_dict, experiment = 'hist-1950'):
+                                     period_data = rapid_period
+                                     label_plot = label
+ 
+-                                ax.scatter(moc[period_data], timeseries[var_sum][period_data], marker = symbol[ir], s = 20, alpha = alpha, facecolors = facecolors, edgecolors = edgecolors)
+-#                                ax.scatter(moc[period_data], timeseries[var_ot][period_data], marker = 'x', s = 20, alpha = alpha, c = run['c'][ir])
+-                                ax.scatter(moc[period_data], timeseries[var_gyre][period_data], marker = '^', s = 20, alpha = alpha, facecolors = facecolors, edgecolors = edgecolors)
++                                ax.scatter(moc[period_data], timeseries[var_sum][period_data], marker=symbol[ir], s=20,
++                                           alpha=alpha, facecolors=facecolors, edgecolors=edgecolors)
++                                ax.scatter(moc[period_data], timeseries[var_gyre][period_data], marker='^', s=20,
++                                           alpha=alpha, facecolors=facecolors, edgecolors=edgecolors)
+                 else:
+-                    print('file does not exist ',fname)
+-
+-    for i in range(0, 1):
+-        ax = fig.add_subplot(1,1,1)
+-        ax.scatter(amoc_obs[:], heat_obs[:], marker = 'o', c = 'black', s = 20, label = 'RAPID-MOCHA (Total)')
+-#        ax.scatter(amoc_obs[:], heat_obs_ot[:], marker = 'x', c = 'black', s = 20, label = 'RAPID-MOCHA (Overturning)')
+-        ax.scatter(amoc_obs[:], heat_obs_gyre[:], marker = '^', c = 'black', s = 20, label = 'RAPID-MOCHA (Gyre)')
+-                
+-        
+-#       Legends
+-        color_1 = ax.scatter([],[],color=color1, marker = 'o', facecolors=color1, label='100 km models during RAPID period')
+-        plt.legend(handles=[color_1])
+-        color_1 = ax.scatter([],[],color=color1, marker = 'o', facecolors='none', label='100 km models during any period')
+-        plt.legend(handles=[color_1])
+-        color_2 = ax.scatter([],[],color=color2, marker = 'o', facecolors=color2, label='40 km models')
+-        plt.legend(handles=[color_2])
+-        color_3 = ax.scatter([],[],color=color3, marker = 'o', facecolors=color3, label='25 km models')
+-        plt.legend(handles=[color_3])
+-        color_4 = ax.scatter([],[],color=color4, marker = 'o', facecolors=color4, label='8 km models')
+-        plt.legend(handles=[color_4])
+-        
+-        
+-        plt.xlabel('Atlantic Meridional Overturning Circulation (Sv)', fontsize=16)
+-        plt.ylabel('Northward Heat Transport (PW)', fontsize=16)
+-        ax.set_xlim([3, 28])
+-        ax.set_ylim([-0.15, 1.7])
+-        ax.legend(loc='upper left', ncol=1, prop={'size':10})
+-        
+-#        plt.text(20, 0.6, 'Ocean \n '+resol_o[i]+' km')
+-#        if i == 1 or i == 3:
+-#            ax.yaxis.tick_right()
+-#            ax.yaxis.set_label_position("right")
+-#        if i < 2:
+-#            #ax.axes.get_xaxis().set_visible(False)
+-#            ax.axes.get_xaxis().set_ticklabels([])
++                    print('file does not exist ', fname)
++
++    ax.scatter(amoc_obs[:], heat_obs[:], marker='o', c='black', s=20, label='RAPID-MOCHA (Total)')
++    ax.scatter(amoc_obs[:], heat_obs_gyre[:], marker='^', c='black', s=20, label='RAPID-MOCHA (Gyre)')
++
++    # Legends
++    color_1 = ax.scatter([], [], color=color1, marker='o', facecolors=color1, label='100 km models during RAPID period')
++    plt.legend(handles=[color_1])
++    color_1 = ax.scatter([], [], color=color1, marker='o', facecolors='none',
++                               label='100 km models during any period')
++    plt.legend(handles=[color_1])
++    color_2 = ax.scatter([], [], color=color2, marker='o', facecolors=color2, label='40 km models')
++    plt.legend(handles=[color_2])
++    color_3 = ax.scatter([], [], color=color3, marker='o', facecolors=color3, label='25 km models')
++    plt.legend(handles=[color_3])
++    color_4 = ax.scatter([], [], color=color4, marker='o', facecolors=color4, label='8 km models')
++    plt.legend(handles=[color_4])
++
++    plt.xlabel('Atlantic Meridional Overturning Circulation (Sv)', fontsize=16)
++    plt.ylabel('Northward Heat Transport (PW)', fontsize=16)
++    ax.set_xlim([3, 28])
++    ax.set_ylim([-0.15, 1.7])
++    ax.legend(loc='upper left', ncol=1, prop={'size': 10})
+ 
+     plt.suptitle('Relation of AMOC and Northward Heat Transport at 26.5N', fontsize=16)
+ 
+     fig.subplots_adjust(bottom=0.1, left=0.08, right=.92, top=.93, wspace=0.03, hspace=0.13)
+-    #plt.savefig(os.path.join(PLOTOUT,'AMOC_heat_multi_model_'+experiment+'.pdf'))
+-    plt.savefig(os.path.join('../PNGs/','AMOC_heat_multi_model_'+experiment+'.png'))
+-    
++    plt.savefig(os.path.join('../PNGs/', 'AMOC_heat_multi_model_' + experiment + '.png'))
++    plt.savefig(os.path.join('../PNGs/', 'AMOC_heat_multi_model_' + experiment + '.pdf'))
++
+     plt.show()
+ 
+ if __name__ == '__main__':
+@@ -168,7 +156,7 @@ if __name__ == '__main__':
+     color1 = (0.4863, 0.5098, 0.5098)
+     color2 = (0.6235, 0, 0.6235)
+     color3 = (0, 0.6235, 0)
+-    color4 = (0, 0.6235, 0.6235)
++    color4 = (0.847, 0.1216, 0.1882)
+ 
+     experiments = ['control-1950', 'hist-1950', 'spinup-1950', 'highres-future','hist-future']
+     cmcc = {'name': 'CMCC-CM2', 'resol': ['HR4', 'VHR4'], 'resol_sym': ['-HR4', '-VHR4'], 'c':[color3,color3], 'resol_ocn': ['25','25']}
+diff --git a/Plotting_code_and_data/Fig9_10_AMOC/Plot_Figure/Plot_Bottom_Left_Panel.py b/Plotting_code_and_data/Fig9_10_AMOC/Plot_Figure/Plot_Bottom_Left_Panel.py
+index 25e80e5..144f847 100644
+--- a/Plotting_code_and_data/Fig9_10_AMOC/Plot_Figure/Plot_Bottom_Left_Panel.py
++++ b/Plotting_code_and_data/Fig9_10_AMOC/Plot_Figure/Plot_Bottom_Left_Panel.py
+@@ -77,9 +77,10 @@ def plot_delta_amoc():
+ 
+     ax.legend(loc = 'lower right', ncol=2, prop={'size':8})
+ 
+-    fig.subplots_adjust(bottom=0.1, left=0.08, right=.95, top=.93, wspace=0.2, hspace=0.2)
+-    fig_name = 'delta_AMOC_historic_mmodel.png'
+-    plt.savefig(os.path.join('../PNGs/',fig_name))
++    fig.subplots_adjust(bottom=0.18, left=0.08, right=.95, top=.9, wspace=0.2, hspace=0.2)
++    fig_name = 'delta_AMOC_historic_mmodel'
++    plt.savefig(os.path.join('../PNGs/',fig_name+".png"))
++    plt.savefig(os.path.join('../PNGs/',fig_name+".pdf"))
+     
+     plt.show()
+ 
+diff --git a/Plotting_code_and_data/Fig9_10_AMOC/Plot_Figure/Plot_Upper_Right_Panel.py b/Plotting_code_and_data/Fig9_10_AMOC/Plot_Figure/Plot_Upper_Right_Panel.py
+index ce0d3a0..cd7eb34 100755
+--- a/Plotting_code_and_data/Fig9_10_AMOC/Plot_Figure/Plot_Upper_Right_Panel.py
++++ b/Plotting_code_and_data/Fig9_10_AMOC/Plot_Figure/Plot_Upper_Right_Panel.py
+@@ -120,4 +120,5 @@ plt.yticks(fontsize=fontsize)
+ plt.ylabel('AMOC anomaly (Sv)', fontsize=fontsize)
+ #plt.xlabel('Model year', fontsize=fontsize)
+ plt.savefig(os.path.join('../PNGs/','AMOC_timeseries.png'))
++plt.savefig(os.path.join('../PNGs/','AMOC_timeseries.pdf'))
+ plt.show()
+diff --git a/Plotting_code_and_data/Fig9_14_SI_warming/Plot_Figure/plot_Fig_9_14.py b/Plotting_code_and_data/Fig9_14_SI_warming/Plot_Figure/plot_Fig_9_14.py
+index 85daa48..3730558 100644
+--- a/Plotting_code_and_data/Fig9_14_SI_warming/Plot_Figure/plot_Fig_9_14.py
++++ b/Plotting_code_and_data/Fig9_14_SI_warming/Plot_Figure/plot_Fig_9_14.py
+@@ -217,11 +217,11 @@ for m,month in enumerate([3,9]):
+     plt.gca().spines['top'].set_color('none')
+ plt.xlabel('Cum. CO2 emissions (Gt)')    
+ lgd = plt.legend(frameon=False,labelspacing=0.2,markerscale=0,loc='upper right',bbox_to_anchor=[1.24,1,0,0])
+-for item in lgd.legendHandles:
++for item in lgd.get_lines():
+     item.set_visible(False)
+ # set colors of legend
+ for i,text in enumerate(lgd.get_texts()):
+-    plt.setp(text, color = lgd.legendHandles[i].get_c()) 
++    plt.setp(text, color = lgd.get_lines()[i].get_c()) 
+     
+ # draw SIA vs time
+ for m,month in enumerate([3,9]):
+diff --git a/Plotting_code_and_data/Fig9_15_Antarctic_SI/Plot_Figure/plot_9_13_and_9_15_LEFT_Panels.py b/Plotting_code_and_data/Fig9_15_Antarctic_SI/Plot_Figure/plot_9_13_and_9_15_LEFT_Panels.py
+index 1207a95..16e76b1 100644
+--- a/Plotting_code_and_data/Fig9_15_Antarctic_SI/Plot_Figure/plot_9_13_and_9_15_LEFT_Panels.py
++++ b/Plotting_code_and_data/Fig9_15_Antarctic_SI/Plot_Figure/plot_9_13_and_9_15_LEFT_Panels.py
+@@ -61,6 +61,7 @@ for hemisphere in ['SouthernHemisphere', 'NorthernHemisphere']:
+     sia_array = create_array(sia, 1979, 2019, 1979, 2008)
+     plot_array(sia_array, hemisphere)
+     plt.savefig('../PNGs/'+hemisphere+'LEFT_PANEL.pdf')
++    plt.savefig('../PNGs/'+hemisphere+'LEFT_PANEL.png')
+ 
+ 
+ 
+diff --git a/Plotting_code_and_data/Fig9_15_Antarctic_SI/Plot_Figure/plot_Fig_9_13_RIGHT_and_Fig_9_15_RIGHT.py b/Plotting_code_and_data/Fig9_15_Antarctic_SI/Plot_Figure/plot_Fig_9_13_RIGHT_and_Fig_9_15_RIGHT.py
+index 8ec0748..41fddf2 100644
+--- a/Plotting_code_and_data/Fig9_15_Antarctic_SI/Plot_Figure/plot_Fig_9_13_RIGHT_and_Fig_9_15_RIGHT.py
++++ b/Plotting_code_and_data/Fig9_15_Antarctic_SI/Plot_Figure/plot_Fig_9_13_RIGHT_and_Fig_9_15_RIGHT.py
+@@ -125,6 +125,7 @@ c.ax.tick_params(labelsize=12)
+ c.set_label(label='Number of models\nabove 15% sea-ice\nconcentration',size=18)
+ plt.subplots_adjust(hspace=0.05,wspace=0.05)
+ fig.savefig('../PNGs/Fig_9_13_RIGHT.png',dpi=500,bbox_inches='tight')
++fig.savefig('../PNGs/Fig_9_13_RIGHT.pdf',dpi=500,bbox_inches='tight')
+ #fig.savefig('/work/mh0033/m300681/IPCC/ice_obs_nh.pdf',bbox_inches='tight')
+ 
+ ## Fig 9.15 right panel (Antarctic):
+@@ -175,4 +176,5 @@ c.ax.tick_params(labelsize=12)
+ c.set_label(label='Number of models\nabove 15% sea-ice\nconcentration',size=18)
+ plt.subplots_adjust(hspace=0.05,wspace=0.05)
+ fig.savefig('../PNGs/Fig_9_15_RIGHT.png',dpi=500,bbox_inches='tight')
++fig.savefig('../PNGs/Fig_9_15_RIGHT.pdf',dpi=500,bbox_inches='tight')
+ #fig.savefig('/work/mh0033/m300681/IPCC/ice_obs_sh.pdf',bbox_inches='tight')
+diff --git a/Plotting_code_and_data/Fig9_19_AIS_basal/Plot_Figure/PLOT_shade_future_melt_anomalies_maps.py b/Plotting_code_and_data/Fig9_19_AIS_basal/Plot_Figure/PLOT_shade_future_melt_anomalies_maps.py
+index d09dc3e..01229bd 100644
+--- a/Plotting_code_and_data/Fig9_19_AIS_basal/Plot_Figure/PLOT_shade_future_melt_anomalies_maps.py
++++ b/Plotting_code_and_data/Fig9_19_AIS_basal/Plot_Figure/PLOT_shade_future_melt_anomalies_maps.py
+@@ -18,6 +18,7 @@ from matplotlib import cm
+ from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+ import functions_nico as nico
+ import os
++import sys
+ 
+ print('                              ')
+ print('      |||||||                 ')
+@@ -28,8 +29,12 @@ print('       -----                  ')
+ print('                              ')
+ 
+ #===========================================================================
++if len(sys.argv) != 2:
++    print("Usage: python PLOT_shade_future_melt_anomalies_maps.py <arg>")
++    sys.exit(1)
+ 
+-what = 'NON_LOCAL_MAX_PIG'   # 'NON_LOCAL'         for ISMIP6 non-local-MeanAnt
++what = sys.argv[1] 
++# what = 'NON_LOCAL_MAX_PIG'   # 'NON_LOCAL'         for ISMIP6 non-local-MeanAnt
+                              # 'NON_LOCAL_MAX_PIG' for ISMIP6 non-local-PIGL
+                              # 'FESOM_PRES'        for Naughten et al. (2018): MMM-rcp85 over 2006-2015
+ 
+diff --git a/Plotting_code_and_data/Fig9_19_AIS_basal/Plot_Figure/PLOT_shade_melt_rate_maps.py b/Plotting_code_and_data/Fig9_19_AIS_basal/Plot_Figure/PLOT_shade_melt_rate_maps.py
+index ba4d874..401aa17 100644
+--- a/Plotting_code_and_data/Fig9_19_AIS_basal/Plot_Figure/PLOT_shade_melt_rate_maps.py
++++ b/Plotting_code_and_data/Fig9_19_AIS_basal/Plot_Figure/PLOT_shade_melt_rate_maps.py
+@@ -17,6 +17,7 @@ from matplotlib import cm
+ from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+ import functions_nico as nico
+ import os
++import sys
+ 
+ print('                              ')
+ print('      |||||||                 ')
+@@ -27,8 +28,12 @@ print('       -----                  ')
+ print('                              ')
+ 
+ #===========================================================================
++if len(sys.argv) != 2:
++    print("Usage: python PLOT_shade_future_melt_anomalies_maps.py <arg>")
++    sys.exit(1)
+ 
+-what = 'FESOM_PRES'          # 'OBS'               for Rignot et al. (2013), updated version
++what = sys.argv[1] 
++# what = 'FESOM_PRES'          # 'OBS'               for Rignot et al. (2013), updated version
+                              # 'NON_LOCAL'         for ISMIP6 non-local-MeanAnt
+                              # 'NON_LOCAL_MAX_PIG' for ISMIP6 non-local-PIGL
+                              # 'FESOM_PRES'        for Naughten et al. (2018): MMM-rcp85 over 2006-2015
+diff --git a/Plotting_code_and_data/Fig9_22_permafrost/Plot_Figure/PLOT_AR6_WGI_Fig9-22.py b/Plotting_code_and_data/Fig9_22_permafrost/Plot_Figure/PLOT_AR6_WGI_Fig9-22.py
+index b027e94..853f878 100644
+--- a/Plotting_code_and_data/Fig9_22_permafrost/Plot_Figure/PLOT_AR6_WGI_Fig9-22.py
++++ b/Plotting_code_and_data/Fig9_22_permafrost/Plot_Figure/PLOT_AR6_WGI_Fig9-22.py
+@@ -43,9 +43,9 @@ scenarios = [ "ssp585", "ssp370", "ssp245", "ssp126" ]
+ nscen = len(scenarios)
+ 
+ # Assessed temperature ranges
+-tmin_assessed = np.empty((nyears,nscen),np.float)
+-tmax_assessed = np.empty((nyears,nscen),np.float)
+-tcen_assessed = np.empty((nyears,nscen),np.float)
++tmin_assessed = np.empty((nyears,nscen),float)
++tmax_assessed = np.empty((nyears,nscen),float)
++tcen_assessed = np.empty((nyears,nscen),float)
+ # AR6 WG1 SPM: Box SPM.2, Table 1:
+ # 2050
+ tmin_assessed[0,:] = [1.1, 0.9, 0.8, 0.6]
+@@ -75,7 +75,7 @@ for iexp, experiment in enumerate(experiments):
+     data = []
+     f = open("data/pf"+depth+"m_"+experiment+"_NH_"+year1+"-"+year2+".txt", "r")
+     lines = f.readlines()
+-    data = np.zeros((len(lines)),np.float)
++    data = np.zeros((len(lines)),float)
+     for i, line in enumerate(lines):
+         data[i] = float(line.split()[1]) / 1e6
+     f.close()
+@@ -177,9 +177,9 @@ for iscenario,scenario in enumerate(scenarios):
+         pfbinarr[imod,:] = pfbin[:]
+       
+         for iyear,year in enumerate(years):
+-            mon1 = np.int((year-Year0)*12)
+-            mon2 = np.int((year-Year0)*12)
+-            nmext = np.int((nyrave-1)*mpy/2)
++            mon1 = int((year-Year0)*12)
++            mon2 = int((year-Year0)*12)
++            nmext = int((nyrave-1)*mpy/2)
+             mon1ext = mon1-nmext
+             mon2ext = mon2+nmext
+             if ( mon2ext > nt-1 ):
+diff --git a/Plotting_code_and_data/Fig9_23_snow/Plot_Figure/SnowObs.py b/Plotting_code_and_data/Fig9_23_snow/Plot_Figure/SnowObs.py
+index 35f6b34..a94ea78 100644
+--- a/Plotting_code_and_data/Fig9_23_snow/Plot_Figure/SnowObs.py
++++ b/Plotting_code_and_data/Fig9_23_snow/Plot_Figure/SnowObs.py
+@@ -32,11 +32,11 @@ datestr = str(ybeg)+"-"+str(yend)
+ ny = yend - ybeg + 1
+ nm = 12
+ 
+-sce = np.zeros((ny,nm),np.float)
+-scetrend = np.zeros((nm),np.float)
+-swe = np.zeros((ny,nm),np.float)
+-swetrend = np.zeros((nm),np.float)
+-year = np.zeros((ny),np.float)
++sce = np.zeros((ny,nm),float)
++scetrend = np.zeros((nm),float)
++swe = np.zeros((ny,nm),float)
++swetrend = np.zeros((nm),float)
++year = np.zeros((ny),float)
+ 
+ with open("data/Mudryk_scf_anom_"+datestr+".txt","r") as f:
+     data = f.readlines()
+diff --git a/Plotting_code_and_data/Fig9_24_snow/Plot_Figure/Plot_AR6_9-24a.py b/Plotting_code_and_data/Fig9_24_snow/Plot_Figure/Plot_AR6_9-24a.py
+index bf80787..bd974a5 100644
+--- a/Plotting_code_and_data/Fig9_24_snow/Plot_Figure/Plot_AR6_9-24a.py
++++ b/Plotting_code_and_data/Fig9_24_snow/Plot_Figure/Plot_AR6_9-24a.py
+@@ -43,7 +43,7 @@ with open(fichier,"r") as f:
+ nmod = len(data)
+ 
+ models = []
+-sce = np.zeros((nmod,nmon),np.float)
++sce = np.zeros((nmod,nmon), float)
+ for i,line in enumerate(data):
+     words = line.split()
+     models.append(words[0])
+@@ -52,7 +52,7 @@ for i,line in enumerate(data):
+ 
+ sce[:,:] /= 1.e6
+ 
+-obssce = np.zeros((nyr,nmon),np.float)
++obssce = np.zeros((nyr,nmon), float)
+ # with open("NOAA-CDR-Snow/nhsce_1995-2014-monthly.txt","r") as f:
+ with open("Mudryk_scf_"+aabeg+"-"+aaend+".txt","r") as f:
+     data = f.readlines()
+diff --git a/Plotting_code_and_data/Fig9_24_snow/Plot_Figure/Plot_AR6_9-24b.py b/Plotting_code_and_data/Fig9_24_snow/Plot_Figure/Plot_AR6_9-24b.py
+index 95006ae..b49d055 100644
+--- a/Plotting_code_and_data/Fig9_24_snow/Plot_Figure/Plot_AR6_9-24b.py
++++ b/Plotting_code_and_data/Fig9_24_snow/Plot_Figure/Plot_AR6_9-24b.py
+@@ -66,17 +66,17 @@ highECSmodels = [ 'CanESM5', 'CESM2', 'CESM2-WACCM', 'CNRM-CM6-1', 'CNRM-ESM2-1'
+                   'HadGEM3-GC31-LL', 'IPSL-CM6A-LR', 'NESM3', 'UKESM1-0-LL' ]
+ 
+ nscen = len(scenarios)
+-slope = np.empty((nscen),np.float)
+-intercept = np.empty((nscen),np.float)
+-xmin = np.empty((nscen),np.float)
+-xmax = np.empty((nscen),np.float)
++slope = np.empty((nscen),float)
++intercept = np.empty((nscen),float)
++xmin = np.empty((nscen),float)
++xmax = np.empty((nscen),float)
+ 
+ years = [ 2050, 2090 ]
+ nyears = len(years)
+ # Assessed temperature ranges
+-tmin_assessed = np.empty((nyears,nscen),np.float)
+-tmax_assessed = np.empty((nyears,nscen),np.float)
+-tcen_assessed = np.empty((nyears,nscen),np.float)
++tmin_assessed = np.empty((nyears,nscen),float)
++tmax_assessed = np.empty((nyears,nscen),float)
++tcen_assessed = np.empty((nyears,nscen),float)
+ # AR6 WG1 TS: CSB TS.1, Table 1:
+ # 2050
+ tmin_assessed[0,:] = [1.9, 1.7, 1.6, 1.3]
+@@ -137,9 +137,9 @@ for iscen, scenario in enumerate(scenarios):
+ 
+         if (ific == 0) and (iscen == 0):
+              nbin = tbin.shape[0]
+-             alldata = np.empty((nbin,nsimmax),np.float)
+-             ndatabin = np.zeros((nbin),np.int)
+-             percentiles = np.empty((nbin,nperc),np.float)
++             alldata = np.empty((nbin,nsimmax),float)
++             ndatabin = np.zeros((nbin),int)
++             percentiles = np.empty((nbin,nperc),float)
+              tbinpre = tbin + addpreindustrial
+ 
+         if (ific == 0):

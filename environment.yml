@@ -19,3 +19,6 @@ dependencies:
   - pillow
   - matplotlib
   - openpyxl
+  - iris
+  - pip:
+    - basemap
