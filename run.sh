@@ -1,0 +1,72 @@
+#!/bin/bash
+
+eval "$(conda shell.bash hook)"
+conda activate ipcc_ch9
+
+DIR=Chapter-9
+
+# wget https://www.ipcc.ch/report/ar6/wg1/downloads/figures/IPCC_AR6_WGI_FAQ_9_1_Figure_1.png
+# wget https://www.ipcc.ch/report/ar6/wg1/downloads/figures/IPCC_AR6_WGI_FAQ_9_2_Figure_1.png
+# wget https://www.ipcc.ch/report/ar6/wg1/downloads/figures/IPCC_AR6_WGI_Figure_9_14.png
+# wget https://www.ipcc.ch/report/ar6/wg1/downloads/figures/IPCC_AR6_WGI_Figure_9_24.png
+# wget https://www.ipcc.ch/report/ar6/wg1/downloads/figures/IPCC_AR6_WGI_Figure_9_19.png
+# wget https://www.ipcc.ch/report/ar6/wg1/downloads/figures/IPCC_AR6_WGI_Figure_9_22.png
+
+# Apply changes to produce figure of $DIR
+
+echo Patching $DIR
+cd $DIR
+pip install -e .
+
+patch < ../${DIR}.patch
+
+echo Generating FAQ 9.1
+cd ~/repro-Chapter-9/Chapter-9/Plotting_code_and_data/FAQ9_1_will_human-induced_changes_be_reversible/Plot_Figure
+python ./FAQ9.1_get_timeseries_from_data.py
+mv ../PNGs/FAQ9.1-RSL-last-glacial-cycle.pdf ../../../../IPCC_AR6_WGI_FAQ_9_1_Figure_1_repro.pdf
+
+echo Generating FAQ 9.2
+cd ~/repro-Chapter-9/Chapter-9/Plotting_code_and_data/Fig9_14_SI_warming/Plot_Figure
+python ./plot_Fig_9_14.py
+mv ../PNGs/FAQ9.1-RSL-last-glacial-cycle.pdf ../../../../IPCC_AR6_WGI_FAQ_9_1_Figure_1_repro.pdf
+
+echo Generating Fig.9.14
+cd ~/repro-Chapter-9/Chapter-9/Plotting_code_and_data/Fig9_14_SI_warming/Plot_Figure
+python ./plot_SL_curves.py
+mv ../PNGs/Fig_9_14.pdf ../../../../IPCC_AR6_WGI_Figure_9_14_repro.pdf
+
+echo Generating Fig.9.24
+cd ~/repro-Chapter-9/Chapter-9/Plotting_code_and_data/Fig9_24_snow/Plot_Figure
+python Plot_AR6_9-24a.py 
+python Plot_AR6_9-24b.py 
+mv ../PNGs/snc_NH_CMIP6_1981-2014_vertical.pdf ../../../../IPCC_AR6_WGI_Figure_9_24a_repro.pdf
+mv ../PNGs/snc_NH_CMIP6_1981-2014_vertical.png ../../../../IPCC_AR6_WGI_Figure_9_24a_repro.png
+mv ../PNGs/snow_scenariodependence_MAM.pdf ../../../../IPCC_AR6_WGI_Figure_9_24b_repro.pdf
+mv ../PNGs/snow_scenariodependence_MAM.png ../../../../IPCC_AR6_WGI_Figure_9_24b_repro.png
+
+echo Generating Fig.9.19
+cd ~/repro-Chapter-9/Chapter-9/Plotting_code_and_data/Fig9_19_AIS_basal/Plot_Figure
+# using arg
+python PLOT_shade_future_melt_anomalies_maps.py NON_LOCAL
+python PLOT_shade_future_melt_anomalies_maps.py NON_LOCAL_MAX_PIG
+python PLOT_shade_future_melt_anomalies_maps.py FESOM_PRES
+python PLOT_shade_melt_rate_maps.py OBS
+python PLOT_shade_melt_rate_maps.py NON_LOCAL
+python PLOT_shade_melt_rate_maps.py NON_LOCAL_MAX_PIG
+python PLOT_shade_melt_rate_maps.py FESOM_PRES
+
+mv ../PNGs/map_melt_AR6_future_anom_FESOM_PRES.pdf ../../../../IPCC_AR6_WGI_Figure_9_19f_repro.pdf
+mv ../PNGs/map_melt_AR6_future_anom_NON_LOCAL_MAX_PIG.pdf ../../../../IPCC_AR6_WGI_Figure_9_19e_repro.pdf
+mv ../PNGs/map_melt_AR6_future_anom_NON_LOCAL.pdf ../../../../IPCC_AR6_WGI_Figure_9_19d_repro.pdf
+mv ../PNGs/map_melt_AR6_pres_FESOM_PRES.pdf ../../../../IPCC_AR6_WGI_Figure_9_19c_repro.pdf
+mv ../PNGs/map_melt_AR6_pres_NON_LOCAL_MAX_PIG.pdf  ../../../../IPCC_AR6_WGI_Figure_9_19b_repro.pdf
+mv ../PNGs/map_melt_AR6_pres_OBS.pdf ../../../../IPCC_AR6_WGI_Figure_9_19a_repro.pdf
+
+echo Generating Fig.9.22
+cd ~/repro-Chapter-9/Chapter-9/Plotting_code_and_data/Fig9_22_permafrost/Plot_Figure
+python PLOT_AR6_WGI_Fig9-22.py 
+mv ../PNGs/AR6_WGI_Fig9-22.png ../../../../IPCC_AR6_WGI_Figure_9_22_repro.png
+mv ../PNGs/AR6_WGI_Fig9-22.pdf ../../../../IPCC_AR6_WGI_Figure_9_22_repro.pdf
+
+# Remove the changes
+git checkout ../../Chapter-7
