@@ -1,0 +1,21 @@
+name: ipcc_ch9
+channels:
+  - conda-forge
+  - anaconda
+
+dependencies:
+  - python=3.9
+  - requests
+  - cartopy
+  - dask
+  - netcdf4
+  - numpy
+  - pip
+  - scipy
+  - pandas
+  - xarray
+  - click
+  - pyyaml
+  - pillow
+  - matplotlib
+  - openpyxl
